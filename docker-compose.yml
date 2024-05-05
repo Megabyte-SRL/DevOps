@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # react-app:
+  #   image: enriquesilvestre/megabyte-frontend:latest
+  #   container_name: megabyte-frontend
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - webnet
+  
+  laravel-app:
+    container_name: enriquesilvestre/megabyte-backend:latest
+    ports:
+      - "8080:80"
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  db:
+    image: mariadb:10.6.3
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql
+    restart: always
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - webnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    depends_on:
+      - db
+    ports:
+    - "8081:80"
+    volumes:
+      - /sessions
+    links:
+      - db
+    networks:
+      - webnet
