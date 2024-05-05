@@ -14,7 +14,8 @@ services:
   #     - webnet
   
   laravel-app:
-    container_name: enriquesilvestre/megabyte-backend:latest
+    image: enriquesilvestre/megabyte-backend:latest
+    container_name: megabyte-backend
     ports:
       - "8080:80"
     environment:
