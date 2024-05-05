@@ -19,6 +19,6 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           password: ${{ secrets.DEPLOY_PASSWORD }}
           script: |
-            cd /TIS/DevOps
+            cd ~/TIS/DevOps
             docker compose pull
             docker compos up -d
