@@ -10,7 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: SSH and Deploy
         uses: appleboy/ssh-action@master
@@ -21,4 +21,4 @@ jobs:
           script: |
             cd ~/TIS/DevOps
             docker compose pull
-            docker compos up -d
+            docker compose up -d
