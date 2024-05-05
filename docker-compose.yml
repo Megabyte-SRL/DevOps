@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  webnet:
+    driver: bridge
+
 services:
   # react-app:
   #   image: enriquesilvestre/megabyte-frontend:latest
