@@ -20,5 +20,7 @@ jobs:
           password: ${{ secrets.DEPLOY_PASSWORD }}
           script: |
             cd ~/TIS/DevOps
+            git checkout dev
+            git pull origin dev
             docker compose pull
             docker compose up -d

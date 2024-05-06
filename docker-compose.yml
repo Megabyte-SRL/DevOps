@@ -1,8 +1,15 @@
 version: '3.8'
 
+#Docker Networks
 networks:
   webnet:
     driver: bridge
+
+
+#Docker Volumes
+volumes:
+  dbdata:
+    driver: local
 
 services:
   # react-app:
