@@ -26,4 +26,4 @@ jobs:
             docker compose up -d
             # Running Laravel migrations
             docker exec megabyte-backend php artisan migrate:rollback --force
-            docker exec megabyte-backend php artisan migrate:fresh --seed
+            docker exec megabyte-backend php artisan migrate:fresh --seed --force
