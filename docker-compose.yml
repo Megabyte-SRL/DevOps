@@ -12,13 +12,13 @@ volumes:
     driver: local
 
 services:
-  # react-app:
-  #   image: enriquesilvestre/megabyte-frontend:latest
-  #   container_name: megabyte-frontend
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - webnet
+  react-app:
+    image: enriquesilvestre/megabyte-frontend:latest
+    container_name: megabyte-frontend
+    ports:
+      - "8000:80"
+    networks:
+      - webnet
   
   laravel-app:
     image: enriquesilvestre/megabyte-backend:latest
