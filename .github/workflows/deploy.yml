@@ -24,3 +24,6 @@ jobs:
             git pull origin dev
             docker compose pull
             docker compose up -d
+            # Running Laravel migrations
+            docker exec megabyte-backend php artisan migrate:rollback
+            docker exec megabyte-backend php artisan migrate:fresh --seed
