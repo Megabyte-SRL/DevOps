@@ -74,3 +74,17 @@ services:
       - db
     networks:
       - webnet
+
+  queue:
+    image: enriquesilvestre/megabyte-backend:latest
+    container_name: megabyte-queue
+    restart: unless-stopped
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+    command: php artisan queue:work --sleep=3 --tries=3
+    depends_on:
+      - db
+      - laravel-app
+    networks:
+      - webnet
